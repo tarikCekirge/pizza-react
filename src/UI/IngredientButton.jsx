@@ -8,7 +8,7 @@ const IngredientButton = ({ ingredient, toggleIngredient, selectedIngredients })
             onClick={() => toggleIngredient(ingredient)}
             className={`flex items-center gap-2  cursor-pointer`}
         >
-            <span className={`size-14  flex items-center justify-center rounded-lg  ${isSelected ? "bg-yellow-400" : "bg-wood-50"}`}>
+            <span className={`size-8 md:size-14  flex items-center justify-center rounded-lg  ${isSelected ? "bg-yellow-400" : "bg-wood-50"}`}>
                 {isSelected && <span className='font-barlow font-700 text-gray-950'>✔</span>}
             </span>
             <span className={`font-barlow font-600 ${isSelected ? "text-gray-950" : "text-gray-600"}`}>{ingredient}</span>

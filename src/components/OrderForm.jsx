@@ -72,7 +72,7 @@ const OrderForm = () => {
 
 
     return (
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto px-4">
 
             <Form onSubmit={handleSubmit(onSubmit)} className="space-y-6" >
                 <div className="grid md:grid-cols-2 gap-4">
@@ -117,7 +117,7 @@ const OrderForm = () => {
                         })}
                     />
 
-                    <div className="grid grid-cols-3 gap-2 mt-2">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
                         {ingredientsList.map(ingredient => (
                             <IngredientButton
                                 key={ingredient}
@@ -149,7 +149,7 @@ const OrderForm = () => {
                     <div className="">
                         <div className="rounded-md flex overflow-hidden">
                             <button type="button" onClick={() => setQuantity(q => Math.max(1, q - 1))} className="cursor-pointer bg-yellow-400 border-yellow-400 rounded-l-md size-14 font-barlow text-2xl font-500 ">-</button>
-                            <span className="size-14 border-t border-t-gray-200  border-b border-b-gray-200 flex items-center justify-center font-barlow text-lg font-600 text-gray-950">{quantity}</span>
+                            <span className=" size-14 border-t border-t-gray-200  border-b border-b-gray-200 flex items-center justify-center font-barlow text-lg font-600 text-gray-950">{quantity}</span>
                             <input type="hidden" value={quantity} {...register("quantity")} />
                             <button type="button" onClick={() => setQuantity(q => q + 1)} className=" cursor-pointer bg-yellow-400 border-yellow-400 rounded-r-md size-14 font-barlow text-2xl font-500">+</button>
                         </div>
