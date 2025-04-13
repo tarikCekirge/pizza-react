@@ -7,6 +7,7 @@ import SizeInput from "../UI/SizeInput";
 import DoughSelect from "../UI/DoughSelect";
 import IngredientButton from "../UI/IngredientButton";
 import Divider from "./Divider";
+import SubmitButton from "../UI/SubmitButton";
 
 
 const OrderForm = () => {
@@ -16,7 +17,7 @@ const OrderForm = () => {
         setValue,
         handleSubmit,
         watch,
-        formState: { errors, isValid }
+        formState: { errors, isValid, isSubmitting }
     } = useForm({ mode: "onTouched", defaultValues: { ingredients: [], size: "S" } })
 
     const [quantity, setQuantity] = useState(1)
@@ -56,18 +57,15 @@ const OrderForm = () => {
             total,
             createdAt: new Date().toISOString(),
         };
-
         try {
             const response = await axios.post('https://reqres.in/api/pizza', order);
-
             if (response.status === 200 || response.status === 201) {
-                console.log('Response Data:', response.data);
                 navigate('/success', { state: { order } });
             } else {
-                console.error('Unexpected response:', response);
+                console.error('Response Error:', response);
             }
         } catch (error) {
-            console.error('Error submitting order:', error);
+            console.error('Submitting Error:', error);
         }
     };
 
@@ -164,9 +162,7 @@ const OrderForm = () => {
                         <p className="flex justify-between font-barlow font-600 text-red-600">Genel Toplam: <span>{total.toFixed(2)}₺</span></p>
                     </div>
 
-                    <button disabled={!isValid} type="submit" className="bg-yellow-400 w-full py-2 font-bold rounded md:col-start-2 font-barlow text-gray-900 cursor-pointer disabled:opacity-35 disabled:cursor-auto">
-                        SİPARİŞ VER
-                    </button>
+                    <SubmitButton isValid={isValid} isSubmitting={isSubmitting} />
                 </div>
                 <input type="hidden" {...register("extrasTotal")} value={extrasTotal} />
                 <input type="hidden" {...register("total")} value={total} />
